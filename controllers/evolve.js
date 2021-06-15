@@ -122,11 +122,11 @@ const crossover = (firstPatner, secondPatner) => {
 }
 
 // Mutation  
-const mutation = (emploi, matières, salles, durées) => {
+const mutation = (emploi, mutationRate, matières, salles, durées) => {
     let newEmploi = Population(matières, salles, durées, 1)[0].emploi ;
     let i = Math.floor(Math.random(1)*emploi.length) ;
     for(let j=2; j<4;j++){
-        if(Math.random(1)<0.01){
+        if(Math.random(1)<mutationRate){
             emploi[i][j] = newEmploi[i][j];
         }
     }
@@ -134,7 +134,7 @@ const mutation = (emploi, matières, salles, durées) => {
 }
 
 // searchElit
-const searchElit = (emplois, matières, salles, durées) => {
+const searchElit = (emplois, mutationRate, matières, salles, durées) => {
     let Elits = [];
     let elitFitness = 0;
     let maxFitness = 0;
@@ -175,7 +175,7 @@ const searchElit = (emplois, matières, salles, durées) => {
 
             // Mutation  
             if(crossed){
-                var mutated = mutation(crossed, matières, salles, durées);
+                var mutated = mutation(crossed, mutationRate, matières, salles, durées);
             }
 
             // test 

@@ -5,10 +5,10 @@ const { Population, searchElit } = require("../controllers/evolve");
 
 
 router.get('/emploi/generate', (req, res) => {
-    var { matières, salles, durées } = req.body;
-    if(matières && salles && durées){        
-        let population = Population(matières, salles, durées, 100);
-        res.send(searchElit(population, matières, salles, durées));
+    var { matières, salles, durées, populationSize , mutationRate  } = req.body;
+    if(matières && salles && durées && populationSize ){        
+        let population = Population(matières, salles, durées, populationSize);
+        res.send(searchElit(population, mutationRate, matières, salles, durées));
     }
 })
 
