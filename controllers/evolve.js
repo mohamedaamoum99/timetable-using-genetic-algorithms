@@ -96,9 +96,19 @@ const Population = (matières, salles, durées, size) => {
 const pickOne = (emplois) => {
     let index = 0;
     let r = Math.random(1);
+    let sum = 0;
+    let proba = 0;
+
+    for(let i=0; i<emplois.length; i++){
+        sum += emplois[i].fitness;  
+    }
+
+    for(let i=0; i<emplois.length; i++){
+        emplois[i].proba = emplois[i].fitness / sum ;  
+    }
 
     while(r > 0 && index < emplois.length){
-        r = r - emplois[index].fitness;
+        r = r - emplois[index].proba;
         if(r > 0){
             index++;
         }
